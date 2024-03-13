@@ -1,8 +1,8 @@
 from django.urls import path
-from catalog.views import index, contacts
+from catalog.views import home, contacts
 
 
 urlpatterns = [
-    path('', index),
+    path('', home),
     path('contacts/', contacts)
 ]

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 
-def index(request):
+def home(request):
 
-    return render(request, 'catalog/index.html')
+    return render(request, 'catalog/home.html')
 
 
 def contacts(request):
