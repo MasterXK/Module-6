@@ -15,10 +15,10 @@ class Command(BaseCommand):
         ]
 
         products_to_add = [
-            {'name': 'продукт1', 'price': '1', 'category': Category.object.get(name='категория1'), 'description': 'описание1'},
-            {'name': 'продукт2', 'price': '2', 'category': Category.object.get(name='категория1'), 'description': 'описание2'},
-            {'name': 'продукт3', 'price': '3', 'category': Category.object.get(name='категория2'), 'description': 'описание3'},
-            {'name': 'продукт4', 'price': '4', 'category': Category.object.get(name='категория3'), 'description': 'описание4'},
+            {'name': 'продукт1', 'price': '1', 'category': Category.objects.get(name='категория1'), 'description': 'описание1'},
+            {'name': 'продукт2', 'price': '2', 'category': Category.objects.get(name='категория1'), 'description': 'описание2'},
+            {'name': 'продукт3', 'price': '3', 'category': Category.objects.get(name='категория2'), 'description': 'описание3'},
+            {'name': 'продукт4', 'price': '4', 'category': Category.objects.get(name='категория3'), 'description': 'описание4'},
         ]
 
         categories_to_create = []
