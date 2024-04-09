@@ -8,9 +8,12 @@ from blog.models import BlogArticle
 class ArticleCreateView(CreateView):
     model = BlogArticle
     fields = ('title', 'text',)
-    success_url = reverse_lazy('catalog:blog')
+    success_url = reverse_lazy('blog:article')
 
 
 class BlogListView(ListView):
     model = BlogArticle
 
+
+class BlogDetailView(DetailView):
+    model = BlogArticle
