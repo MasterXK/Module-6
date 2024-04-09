@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from catalog.models import Product, BlogArticle
+from catalog.models import Product
 from django.views.generic import ListView, DeleteView, DetailView, TemplateView, CreateView
 
 
@@ -20,8 +20,3 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
-
-class ArticleCreateView(CreateView):
-    model = BlogArticle
-    fields = ('title', 'text', 'preview',)
-    success_url = reverse_lazy('catalog/home.html')
