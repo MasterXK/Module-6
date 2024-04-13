@@ -3,7 +3,7 @@ from django.db import models
 
 class BlogArticle(models.Model):
     title = models.CharField(max_length=50, verbose_name='заголовок')
-    slug = models.CharField(max_length=150, verbose_name='slug')
+    slug = models.CharField(max_length=150, verbose_name='slug', null=True, blank=True)
     text = models.TextField(verbose_name='Cодержимое')
     preview = models.ImageField(verbose_name='Изображение')
     created_at = models.DateField(verbose_name='Дата создания', auto_now_add=True)
