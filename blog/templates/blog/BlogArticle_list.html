@@ -13,7 +13,6 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 {% for object in object_list %}
-                {% if object.is_published %}
                 <div class="col">
                     <div class="card mb-4 box-shadow">
                         <img src="{{ object.preview|media_dir }}" class="card-img-top" alt="Card image cap">
@@ -25,18 +24,30 @@
                                     <a class="btn btn-primary" href='{% url "blog:article" object.pk %}' role="button">
                                         View
                                     </a>
-                                    <a class="btn btn-primary" href='{% url "blog:edit_article" object.pk %}' role="button">
+                                    <a class="btn btn-primary" href='{% url "blog:edit_article" object.pk %}'
+                                       role="button">
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger" href='{% url "blog:delete_article" object.pk %}' role="button">
+                                    <a class="btn btn-danger" href='{% url "blog:delete_article" object.pk %}'
+                                       role="button">
                                         Delete
                                     </a>
                                 </div>
+                                {% if object.is_published %}
+                                <a class="btn btn-warning" href='{% url "blog:toggle_activity" object.pk %}'
+                                   role="button">
+                                    Деактивировать
+                                </a>
+                                {% else %}
+                                <a class="btn btn-success" href='{% url "blog:toggle_activity" object.pk %}'
+                                   role="button">
+                                    Активировать
+                                </a>
+                                {% endif%}
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endif %}
                 {% endfor %}
             </div>
         </div>

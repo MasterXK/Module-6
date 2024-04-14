@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DeleteView, DetailView, CreateView, UpdateView
 from pytils.translit import slugify
@@ -31,6 +31,11 @@ class ArticleUpdateView(UpdateView):
 class BlogListView(ListView):
     model = BlogArticle
 
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
 
 class ArticleDeleteView(DeleteView):
     model = BlogArticle
@@ -46,3 +51,11 @@ class BlogDetailView(DetailView):
         self.object.save()
 
         return self.object
+
+
+def toggle_activity(request, pk):
+    article = get_object_or_404(BlogArticle, pk=pk)
+    article.is_published = not article.is_published
+    article.save()
+
+    return redirect(reverse('blog:blog_list'))
