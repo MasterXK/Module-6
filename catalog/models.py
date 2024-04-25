@@ -12,7 +12,7 @@ class Product(models.Model):
     updated_at = models.DateField(verbose_name='Дата изменения', auto_now=True)
 
     def __str__(self):
-        return f'продукт'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'продукт'
@@ -29,3 +29,17 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
+
+
+class Version(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')
+    number = models.IntegerField(verbose_name='Номер версии')
+    name = models.CharField(max_length=20, verbose_name='название версии')
+    is_current = models.BooleanField(default=False, verbose_name='Признак текущей версии')
+
+    def __str__(self):
+        return f'версия'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
