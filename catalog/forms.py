@@ -2,7 +2,7 @@ from django import forms
 from django.forms import BooleanField
 from django.views.generic import CreateView
 
-from catalog.models import Product
+from catalog.models import Product, Version
 
 
 class StyleMixin():
@@ -17,6 +17,7 @@ class StyleMixin():
 
 class ProductForm(forms.ModelForm):
     BAD_WORDS = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар')
+
     class Meta:
         model = Product
         fields = '__all__'
@@ -34,3 +35,10 @@ class ProductForm(forms.ModelForm):
             if word in self.BAD_WORDS:
                 raise forms.ValidationError('Так нельзя! Убери плохие слова!')
         return cleaned_data
+
+
+class VersionForm(forms.ModelForm, StyleMixin):
+
+    class Meta:
+        model = Version
+        fields = '__all__'

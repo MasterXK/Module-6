@@ -2,22 +2,23 @@
 
 {% block content %}
 <div class="col-12">
-    <form class="row" method="post">
+    <form class="row" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class='col-6'>
             <div class="card">
                 <div class="card-body">
-                    {% csrf_token %}
                     {{ form.as_p }}
-                    <a type="submit" class="btn btn-primary" href="{% url 'catalog:products' %}">
+                    <button type="submit" class="btn btn-primary">
                         {% if not object %}
                         Создать
                         {% else %}
                         Обновить
                         {% endif %}
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
+        {% if object %}
         <div class='col-6'>
             <div class="card">
                 <div class="card-body">
@@ -28,6 +29,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </form>
 </div>
 {% endblock %}
