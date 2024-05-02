@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from catalog.models import Product, Version
 
 
-class StyleMixin():
+class StyleMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
@@ -15,7 +15,7 @@ class StyleMixin():
                 field.widget.attrs['class'] = 'form-control'
 
 
-class ProductForm(forms.ModelForm):
+class ProductForm(StyleMixin, forms.ModelForm):
     BAD_WORDS = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар')
 
     class Meta:
@@ -37,7 +37,7 @@ class ProductForm(forms.ModelForm):
         return cleaned_data
 
 
-class VersionForm(forms.ModelForm, StyleMixin):
+class VersionForm(StyleMixin, forms.ModelForm):
 
     class Meta:
         model = Version

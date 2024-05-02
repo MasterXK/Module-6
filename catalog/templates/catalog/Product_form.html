@@ -30,12 +30,7 @@
                     </p>
                     {% endif %}
                     {{ form.as_p }}
-                    {% if not forloop.last %}
-                    <a type="submit" class="btn btn-danger" href="{% url 'catalog:version_delete' object.pk %}">
-                        Delete
-                    </a>
                     <hr/>
-                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
